@@ -1,2 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!")
+
+//Sliding Window
+using LeetCodeHackerRankAlgorithms.SlidingWindow;
+
+SlidingWindow slidingWindow = new SlidingWindow();
+Console.WriteLine("{0}", slidingWindow.LongestSubString("pwwkew"));
+Console.ReadLine();
+
