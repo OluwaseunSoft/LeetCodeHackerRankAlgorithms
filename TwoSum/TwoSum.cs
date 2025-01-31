@@ -32,5 +32,33 @@ namespace LeetCodeHackerRankAlgorithms.TwoSum
             Output: [0,1]
           
          * **/
+
+        public int[] TwoSumSolution(int[] nums, int target)
+        {
+            int[] result = new int[2];
+            try
+            {
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    for (int j = 1; j < nums.Length; j++)
+                    {
+                        if (i + j == target)
+                        {
+                            result[0] = i;
+                            result[1] = j;
+                            break;
+                        }
+                    }
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return result;
+            }
+
+
+        }
     }
 }
