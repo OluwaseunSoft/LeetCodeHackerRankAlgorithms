@@ -42,12 +42,12 @@ namespace LeetCodeHackerRankAlgorithms.TwoSum
                 {
                     for (int j = 1; j < nums.Length; j++)
                     {
-                        Console.WriteLine("i:{0} j:{1}", nums[i].ToString(), nums[j].ToString());
+                        if (i == j) break;
                         if (nums[i] + nums[j] == target)
                         {
                             result[0] = i;
-                            result[1] = j;                           
-                        }                        
+                            result[1] = j;   
+                        }
                     }
                 }
                 return result;
@@ -57,8 +57,6 @@ namespace LeetCodeHackerRankAlgorithms.TwoSum
                 Console.WriteLine(e.Message);
                 return result;
             }
-
-
         }
     }
 }

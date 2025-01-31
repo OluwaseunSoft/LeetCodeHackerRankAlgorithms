@@ -7,10 +7,12 @@
 //Console.ReadLine();
 #endregion
 
+#region Two Sum
 using LeetCodeHackerRankAlgorithms.TwoSum;
 
 TwoSum twoSum = new TwoSum();
-int[] nums = [3, 2, 4];
-int target = 6;
+int[] nums = [2, 5, 5, 11];
+int target = 10;
 Console.WriteLine("{0}", twoSum.TwoSumSolution(nums, target));
 Console.ReadLine();
+#endregion
