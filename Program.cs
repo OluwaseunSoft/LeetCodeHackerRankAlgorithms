@@ -13,6 +13,6 @@ using LeetCodeHackerRankAlgorithms.TwoSum;
 TwoSum twoSum = new TwoSum();
 int[] nums = [2, 5, 5, 11];
 int target = 10;
-Console.WriteLine("{0}", twoSum.TwoSumSolution(nums, target));
+twoSum.TwoSumSolution(nums, target);
 Console.ReadLine();
 #endregion
