@@ -74,5 +74,85 @@ Guaranteed constraints:
 
 An array of strings representing the returned values of queries.
          */
+
+        private readonly Dictionary<string, Dictionary<string, int>> _database;
+        private readonly Dictionary<string, Dictionary<string, int>> _updateFrequency;
+
+        public InMemoryDb()
+        {
+            _database = new Dictionary<string, Dictionary<string, int>>();
+            _updateFrequency = new Dictionary<string, Dictionary<string, int>>();
+        }
+
+        public string CreateOrIncreaseRecord(string key, string field, string value)
+        {
+            if (!_database.ContainsKey(key))
+            {
+                _database[key] = new Dictionary<string, int>();
+            }
+
+            if (!_database[key].ContainsKey(field))
+            {
+                _database[key][field] = 0;
+            }
+
+            _database[key][field] += int.Parse(value);
+
+            return _database[key][field].ToString();
+        }
+
+        public string GetRecord(string key, string field)
+        {
+            if (_database.ContainsKey(key) && _database[key].ContainsKey(field))
+            {
+                return _database[key][field].ToString();
+            }
+
+            return "";
+        }
+
+        public string DeleteRecord(string key, string field)
+        {
+            if (_database.ContainsKey(key) && _database[key].ContainsKey(field))
+            {
+                _database[key].Remove(field);
+                if (_database[key].Count == 0)
+                {
+                    _database.Remove(key);
+                }
+                return "true";
+            }
+            return "false";
+        }
+
+        public string[] ExecuteQueries(string[][] queries)
+        {
+            var results = new List<string>();
+
+            foreach (var query in queries)
+            {
+                string operation = query[0];
+                string key = query[1];
+                string field = query[2];
+
+                switch (operation)
+                {
+                    case "SET_OR_INC":
+                        string value = query[3];
+                        results.Add(CreateOrIncreaseRecord(key, field, value));
+                        break;
+                    case "GET":
+                        results.Add(GetRecord(key, field));
+                        break;
+                    case "DELETE":
+                        results.Add(DeleteRecord(key, field));
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid Operation");
+                }
+            }
+
+            return results.ToArray();
+        }
     }
 }

@@ -8,11 +8,31 @@
 #endregion
 
 #region Two Sum
-using LeetCodeHackerRankAlgorithms.TwoSum;
+//using LeetCodeHackerRankAlgorithms.TwoSum;
 
-TwoSum twoSum = new TwoSum();
-int[] nums = [2, 5, 5, 11];
-int target = 10;
-twoSum.TwoSumSolution(nums, target);
-Console.ReadLine();
+//TwoSum twoSum = new TwoSum();
+//int[] nums = [2, 5, 5, 11];
+//int target = 10;
+//twoSum.TwoSumSolution(nums, target);
+//Console.ReadLine();
+#endregion
+
+#region InMemoryDatabase
+using LeetCodeHackerRankAlgorithms.InMemoryDatabase;
+
+InMemoryDb memoryDb = new InMemoryDb();
+
+string[][] queries = [
+  ["SET_OR_INC", "A", "B", "5"],
+  ["SET_OR_INC", "A", "B", "6"],
+  ["GET", "A", "B"],
+  ["GET", "A", "C"],
+  ["DELETE", "A", "B"],
+  ["DELETE", "A", "C"]
+];
+
+string[] result = memoryDb.ExecuteQueries(queries);
+Console.WriteLine("[\"" + string.Join("\",\"", result) + "\"]");
+Console.ReadKey();
+
 #endregion
