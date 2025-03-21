@@ -31,8 +31,7 @@ string[][] queries = [
   ["DELETE", "A", "C"]
 ];
 
-string[] result = memoryDb.ExecuteQueries(queries);
-Console.WriteLine("[\"" + string.Join("\",\"", result) + "\"]");
-Console.ReadKey();
+SlidingWindow slidingWindow = new SlidingWindow();
+Console.WriteLine("{0}", slidingWindow.LongestSubString("pwwkew"));
+Console.ReadLine();
 
-#endregion
