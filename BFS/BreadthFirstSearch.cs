@@ -8,7 +8,7 @@ namespace LeetCodeHackerRankAlgorithms.BFS
 {
     internal class BreadthFirstSearch
     {
-        static List<int> BFSOfGraph(List<int>[] adj, int s)
+        public static List<int> BFSOfGraph(List<int>[] adj, int s)
         {
             try
             {
