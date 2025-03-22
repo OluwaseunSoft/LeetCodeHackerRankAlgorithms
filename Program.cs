@@ -35,15 +35,16 @@
 #region BFS
 using LeetCodeHackerRankAlgorithms.BFS;
 
-List<int>[] adj = new List<int>[5];
-adj[0] = new List<int> { 2, 3, 1 };
+List<int>[] adj = new List<int>[6];
+adj[0] = new List<int> { 1, 2 };
 adj[1] = new List<int> { 0 };
-adj[2] = new List<int> { 0, 4 };
-adj[3] = new List<int> { 0 };
-adj[4] = new List<int> { 2 };
+adj[2] = new List<int> { 0 };
+adj[3] = new List<int> { 4 };
+adj[4] = new List<int> { 3, 5 };
+adj[5] = new List<int> { 4 };
 
 int src = 0;
-List<int> ans = BreadthFirstSearch.BFSOfGraph(adj, src);
+List<int> ans = BreadthFirstSearch.BFSDisconnectedGraph(adj);
 foreach (int a in ans)
 {
     Console.Write(a + " ");
