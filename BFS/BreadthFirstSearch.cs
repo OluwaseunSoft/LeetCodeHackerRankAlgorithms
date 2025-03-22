@@ -40,5 +40,53 @@ namespace LeetCodeHackerRankAlgorithms.BFS
                 return new List<int>();
             }
         }
+
+        public static List<int> BFSAllVerticeGraph(List<int>[] adj, int s, bool[] visited, List<int> res)
+        {
+            try
+            {
+                Queue<int> q = new Queue<int>();
+                visited[s] = true;
+                q.Enqueue(s);
+
+                while (q.Count > 0)
+                {
+                    int curr = q.Dequeue();
+                    res.Add(curr);
+
+                    foreach (int i in adj[curr])
+                    {
+                        if (!visited[i])
+                        {
+                            visited[i] = true;
+                            q.Enqueue(i);
+                        }
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<int>();
+            }
+        }
+
+        public static List<int> BFSDisconnectedGraph(List<int>[] adj)
+        {
+            int v = adj.Length;
+
+            List<int> res = new List<int>();
+            bool[] visited = new bool[v];
+
+            for (int i = 0; i < v; i++)
+            {
+                if (!visited[i])
+                {
+                    BFSAllVerticeGraph(adj, i, visited, res);
+                }
+            }
+            return res;
+        }
     }
 }
