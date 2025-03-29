@@ -89,13 +89,34 @@ namespace LeetCodeHackerRankAlgorithms.BFS
             return res;
         }
 
-        public static Tuple<int, int> BFS(int[,] ints, (int, int) start, (int, int) goal)
+        public static List<(int, int)> BFS(int[,] ints, (int, int) start, (int, int) goal)
         {
+            string[] directions = [ "up", "right", "down", "left"];
             var queueItem = new Queue<(int, int)>();
             var predecessors = new Dictionary<(int, int), (int?, int?)>();
             predecessors.Add(start, (null, null));
 
-            return new Tuple<int, int>(0,0);
+            while (queueItem.Count != 0)
+            {
+                var currentCell = queueItem.Dequeue();
+                if (currentCell == goal)
+                    return GetPath(predecessors, start, goal);
+                foreach (string direction in directions)
+                {
+
+                }
+            }
+            return new List<(int, int)>();
+        }
+
+        private static List<(int, int)> GetPath(Dictionary<(int, int), (int?, int?)> predecessors, (int, int) start, (int, int) goal)
+        {
+            return new List<(int, int)>();
+        }
+
+        private static Dictionary<string, (int, int)> Offsets()
+        {
+
         }
     }
 }
