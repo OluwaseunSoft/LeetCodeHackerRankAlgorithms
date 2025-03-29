@@ -36,15 +36,15 @@
 using LeetCodeHackerRankAlgorithms.BFS;
 
 List<int>[] adj = new List<int>[6];
-adj[0] = new List<int> { 1, 2 };
-adj[1] = new List<int> { 0 };
+adj[0] = new List<int> { 1, 2, 4, 6 };
+adj[1] = new List<int> { 0, 6, 1, 7 };
 adj[2] = new List<int> { 0 };
 adj[3] = new List<int> { 4 };
 adj[4] = new List<int> { 3, 5 };
 adj[5] = new List<int> { 4 };
 
 int src = 0;
-List<int> ans = BreadthFirstSearch.BFSDisconnectedGraph(adj);
+List<int> ans = BreadthFirstSearch.BFSOfGraph(adj, 3);
 foreach (int a in ans)
 {
     Console.Write(a + " ");

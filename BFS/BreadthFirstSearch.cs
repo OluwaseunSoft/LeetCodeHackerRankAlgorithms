@@ -88,5 +88,14 @@ namespace LeetCodeHackerRankAlgorithms.BFS
             }
             return res;
         }
+
+        public static Tuple<int, int> BFS(int[,] ints, (int, int) start, (int, int) goal)
+        {
+            var queueItem = new Queue<(int, int)>();
+            var predecessors = new Dictionary<(int, int), (int?, int?)>();
+            predecessors.Add(start, (null, null));
+
+            return new Tuple<int, int>(0,0);
+        }
     }
 }
