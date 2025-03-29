@@ -88,5 +88,48 @@ namespace LeetCodeHackerRankAlgorithms.BFS
             }
             return res;
         }
+
+        public static List<(int, int)> BFS(int[,] ints, (int, int) start, (int, int) goal)
+        {
+            string[] directions = ["up", "right", "down", "left"];
+            var queueItem = new Queue<(int, int)>();
+            var predecessors = new Dictionary<(int, int), (int?, int?)>();
+            predecessors.Add(start, (null, null));
+
+            while (queueItem.Count != 0)
+            {
+                int row_offset, col_offset = 0;
+                (int, int) neighbour;
+                var currentCell = queueItem.Dequeue();
+                if (currentCell == goal)
+                    return GetPath(predecessors, start, goal);
+                foreach (string direction in directions)
+                {
+                    var directionValues = Offsets()[direction];
+                    row_offset = directionValues.Item1;
+                    col_offset = directionValues.Item2;
+                    neighbour = (currentCell.Item1 + row_offset, currentCell.Item2 + col_offset);
+                    if (!predecessors.ContainsKey(neighbour))
+                    {
+                        queueItem.Enqueue(neighbour);
+                        predecessors.Add(neighbour, currentCell);
+                    }
+                }
+            }
+            return new List<(int, int)>();
+        }
+
+        private static List<(int, int)> GetPath(Dictionary<(int, int), (int?, int?)> predecessors, (int, int) start, (int, int) goal)
+        {
+            return new List<(int, int)>();
+        }
+
+        private static Dictionary<string, (int, int)> Offsets()
+        {
+            return new Dictionary<string, (int, int)>() { { "right", (0, 1) },
+                { "left", (0, -1) },
+                { "up", (-1, 0) },
+                { "down", (1, 0)} };
+        }
     }
 }
