@@ -89,12 +89,13 @@ namespace LeetCodeHackerRankAlgorithms.BFS
             return res;
         }
 
-        public static List<(int, int)> BFS(int[,] ints, (int, int) start, (int, int) goal)
+        public static List<(int, int)> BFS(int[,] maze, (int, int) start, (int, int) goal)
         {
             string[] directions = ["up", "right", "down", "left"];
             var queueItem = new Queue<(int, int)>();
-            var predecessors = new Dictionary<(int, int), (int?, int?)>();
-            predecessors.Add(start, (null, null));
+            queueItem.Enqueue(start);
+            var predecessors = new Dictionary<(int, int), (int, int)>();
+            predecessors.Add(start, (0, 0));
 
             while (queueItem.Count != 0)
             {
@@ -109,7 +110,7 @@ namespace LeetCodeHackerRankAlgorithms.BFS
                     row_offset = directionValues.Item1;
                     col_offset = directionValues.Item2;
                     neighbour = (currentCell.Item1 + row_offset, currentCell.Item2 + col_offset);
-                    if (!predecessors.ContainsKey(neighbour))
+                    if (IsLegal(maze, neighbour) && !predecessors.ContainsKey(neighbour))
                     {
                         queueItem.Enqueue(neighbour);
                         predecessors.Add(neighbour, currentCell);
@@ -119,9 +120,18 @@ namespace LeetCodeHackerRankAlgorithms.BFS
             return new List<(int, int)>();
         }
 
-        private static List<(int, int)> GetPath(Dictionary<(int, int), (int?, int?)> predecessors, (int, int) start, (int, int) goal)
+        private static List<(int, int)> GetPath(Dictionary<(int, int), (int, int)> predecessors, (int, int) start, (int, int) goal)
         {
-            return new List<(int, int)>();
+            (int, int) current = goal;
+            List<(int, int)> path = new List<(int, int)>();
+            while (current != start)
+            {
+                path.Add(current);
+                current = predecessors[current];
+            }
+            path.Add(start);
+            path.Reverse();
+            return path;
         }
 
         private static Dictionary<string, (int, int)> Offsets()
@@ -130,6 +140,15 @@ namespace LeetCodeHackerRankAlgorithms.BFS
                 { "left", (0, -1) },
                 { "up", (-1, 0) },
                 { "down", (1, 0)} };
+        }
+
+        private static bool IsLegal(int[,] maze, (int, int) neighbour)
+        {
+            int i = neighbour.Item1;
+            int j = neighbour.Item2;
+            int numRows = maze.GetLength(0);
+            int numCols = maze.GetLength(1);
+            return (0 <= i && i < numRows) && (0 <= j && j < numCols) && maze[i, j] != 0;
         }
     }
 }
