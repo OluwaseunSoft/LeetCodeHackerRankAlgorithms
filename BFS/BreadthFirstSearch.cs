@@ -94,8 +94,8 @@ namespace LeetCodeHackerRankAlgorithms.BFS
             string[] directions = ["up", "right", "down", "left"];
             var queueItem = new Queue<(int, int)>();
             queueItem.Enqueue(start);
-            var predecessors = new Dictionary<(int, int), (int?, int?)>();
-            predecessors.Add(start, (null, null));
+            var predecessors = new Dictionary<(int, int), (int, int)>();
+            predecessors.Add(start, (0, 0));
 
             while (queueItem.Count != 0)
             {
@@ -120,9 +120,18 @@ namespace LeetCodeHackerRankAlgorithms.BFS
             return new List<(int, int)>();
         }
 
-        private static List<(int, int)> GetPath(Dictionary<(int, int), (int?, int?)> predecessors, (int, int) start, (int, int) goal)
+        private static List<(int, int)> GetPath(Dictionary<(int, int), (int, int)> predecessors, (int, int) start, (int, int) goal)
         {
-            return new List<(int, int)>();
+            (int, int) current = goal;
+            List<(int, int)> path = new List<(int, int)>();
+            while (current != start)
+            {
+                path.Add(current);
+                current = predecessors[current];
+            }
+            path.Add(start);
+            path.Reverse();
+            return path;
         }
 
         private static Dictionary<string, (int, int)> Offsets()
