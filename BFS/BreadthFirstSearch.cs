@@ -150,5 +150,48 @@ namespace LeetCodeHackerRankAlgorithms.BFS
             int numCols = maze.GetLength(1);
             return (0 <= i && i < numRows) && (0 <= j && j < numCols) && maze[i, j] != 0;
         }
+
+        public static List<List<char>> ReadMaze(string path)
+        {
+            try
+            {
+                var lines = File.ReadAllLines(path);
+                var maze = new List<List<char>>();
+
+                if (lines.Length == 0)
+                {
+                    Console.WriteLine("Empty maze file");
+                    Environment.Exit(1);
+                }
+                var expectedWidth = lines[0].Trim('\n').Length;
+                foreach (var line in lines)
+                {
+                    var trimmedLine = line.Trim('\n');
+                    if (trimmedLine.Length != expectedWidth)
+                    {
+                        Console.WriteLine("This is not a rectangular maze");
+                        Environment.Exit(1);
+                    }
+                    maze.Add(trimmedLine.ToList());
+                }
+                return maze;
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("The file not found");
+                Environment.Exit(1);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine($"An I/O error occurred: {ex.Message}");
+                Environment.Exit(1);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+                Environment.Exit(1);
+            }
+            return null;
+        }
     }
 }

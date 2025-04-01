@@ -49,6 +49,9 @@ using LeetCodeHackerRankAlgorithms.BFS;
 //{
 //    Console.Write(a + " ");
 //}
-int[,] maze = { { 1, 2, 0, 4 }, { 5, 6, 7, 8 }, { 9, 0, 11, 0 }, { 13, 14, 15, 16} };
-Console.Write(String.Join(' ', BreadthFirstSearch.BFS(maze, (0, 0), (3, 3))));
+int[,] maze = { { 1, 2, 0, 4 }, { 5, 6, 7, 8 }, { 9, 0, 11, 0 }, { 13, 14, 15, 16 } };
+//Console.Write(String.Join(' ', BreadthFirstSearch.BFS(maze, (0, 0), (3, 3))));
+var content = BreadthFirstSearch.ReadMaze(@"C:\Users\akinw\Downloads\Ex_Files_Python_Data_Structures\Exercise Files\GUI Code\gui_mazes\diagonal_23x23.txt");
+foreach (var item in content)
+    Console.WriteLine(String.Join(' ', item));
 #endregion
