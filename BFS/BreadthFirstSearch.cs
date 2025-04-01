@@ -90,7 +90,7 @@ namespace LeetCodeHackerRankAlgorithms.BFS
         }
 
         public static List<(int, int)> BFS(int[,] maze, (int, int) start, (int, int) goal)
-        {
+        {            
             string[] directions = ["up", "right", "down", "left"];
             var queueItem = new Queue<(int, int)>();
             queueItem.Enqueue(start);
