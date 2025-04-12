@@ -15,9 +15,12 @@ namespace LeetCodeHackerRankAlgorithms.DFS
             Dictionary<(int, int), (int, int)> predecessors = new Dictionary<(int, int), (int, int)>();
             predecessors.Add(start, (0, 0));
 
-            while (stack.Count != 0) 
+            while (stack.Count != 0)
             {
 
             }
+
+            return new List<(int, int)>(stack.ToArray());
+        }
     }
 }
